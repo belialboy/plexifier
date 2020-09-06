@@ -30,7 +30,7 @@ def sendToPushbullet(title,text):
     """
     
     uri = "https://api.pushbullet.com/v2/pushes"
-    reply = requests.post(uri,headers={'Access-Token': 'o.DxvRNu26B2qdy0cI3mm1BNycsmq5jaDg'},data={"body":text,"title":title,"type":"note"})
+    reply = requests.post(uri,headers={'Access-Token': os.environ['pushbulletAPIKey']},data={"body":text,"title":title,"type":"note"})
     logger.debug(reply)
     
 def getTitleAsString(meta):
