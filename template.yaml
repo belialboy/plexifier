@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  plexifier
+  A simple webhook reciever for the Plex Wehook capability
+
+Parameters: 
+  pushbulletAPIKey:
+    Type: String
+    Description: This is the API Key that will be used by the lambda function to post to. Get this from your Pushbullet account information.
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  PlexifierFunciton:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: plexifier/
+      Handler: app.lambda_handler
+      Runtime: python3.6
+      Environment:
+      Variables:
+        pushbulletAPIKey: !Ref pushbulletAPIKey
+      Events:
+        HelloWorld:
+          Type: Api
+          Properties:
+            Path: /plexwh
+            Method: post
+#o.DxvRNu26B2qdy0cI3mm1BNycsmq5jaDg
+Outputs:
+  PlexifierFuncitonApi:
+    Description: "API Gateway endpoint URL for Prod stage for Plexifier function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/plexwh/"
