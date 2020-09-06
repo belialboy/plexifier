@@ -62,7 +62,7 @@ def lambda_handler(event, context):
         elif "media.scrobble" in body['event']:
             # Tweet about it
             logger.info("Sending Pushbullet")
-            sendToPushbullet(body['Title'],"You just watched this video")
+            sendToPushbullet(getTitleAsString(body['Metadata']),"You just watched this video")
             logger.info("Done")
     
     return {
