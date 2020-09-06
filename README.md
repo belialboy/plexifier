@@ -11,7 +11,6 @@ You will need:
 * AWS SAM installed
 * Python 3.6 installed onto the PATH
 * A Pushbullet API key (Get this from your Pushbullet account page)
-* 
 
 ## Build and Deploy
 
