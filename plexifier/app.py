@@ -24,6 +24,15 @@ def getBody(event):
     jsonBody = json.loads(jsonStr)
     return jsonBody
     
+def getImages(event):
+    boundary = getBoundary(event)
+    components = event['body'].split(boundary)
+    del components[0:2]
+    if len(components)>0:
+        logger.debug(components)
+        
+    return components
+    
 def sendToPushbullet(title,text):
     """
     This function sends a notice to Pushbullet
@@ -64,6 +73,8 @@ def lambda_handler(event, context):
             logger.info("Sending Pushbullet")
             sendToPushbullet(getTitleAsString(body['Metadata']),"You just watched this video")
             logger.info("Done")
+    
+    images = getImages(event)
     
     return {
         'statusCode': 200,
