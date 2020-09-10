@@ -51,7 +51,7 @@ def getTitleAsString(meta):
         if "title" in meta:
             return "{PROGRAMME} - {SEASON} Episode {EPISODE} \"{TITLE}\"".format(PROGRAMME=meta['grandparentTitle'],SEASON=meta['parentTile'],EPISODE=meta['index'],TITLE=meta['title'])
         else:
-            return "{PROGRAMME} - {SEASON} Episode {EPISODE}".format(PROGRAMME=meta['grandparentTitle'],SEASON=meta['parentTile'],EPISODE=meta['index'])
+            return "{PROGRAMME} - {SEASON} Episode {EPISODE}".format(PROGRAMME=meta['grandparentTitle'],SEASON=meta['parentTitle'],EPISODE=meta['index'])
     else:
         return meta['title']
     
